@@ -8,8 +8,10 @@ import rehypeToc from 'rehype-toc';
 import { loadEnv } from 'vite';
 
 // Get the base path from environment or use default
+// For user/organization GitHub Pages sites (username.github.io), use '/'
+// For project GitHub Pages sites (username.github.io/project-name), use '/project-name'
 const env = loadEnv('', process.cwd(), '');
-const basePath = env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+const basePath = '/'; // User GitHub Pages site - served at root
 
 export default defineConfig({
   site: 'https://tamntaptech1.github.io',
