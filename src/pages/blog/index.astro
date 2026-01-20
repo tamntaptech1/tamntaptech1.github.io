@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+const basePath = '/'; // User GitHub Pages site - served at root
 
 // Get all blog posts (excluding drafts)
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -62,7 +62,7 @@ const formatDate = (date: Date) => {
               {postsByYear[Number(year)].map((post) => (
                 <article class="group">
                   <a
-                    href={`${basePath}/blog/${post.slug}`}
+                    href={`${basePath}blog/${post.slug}`}
                     class="block"
                   >
                     <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">

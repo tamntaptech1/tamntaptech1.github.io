@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+const basePath = '/'; // User GitHub Pages site - served at root
 ---
 
 <BaseLayout title="Search | Tam Nguyen" description="Search the blog">
@@ -29,7 +29,7 @@ const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
   </div>
 </BaseLayout>
 
-<link href={`${basePath}/_pagefind/pagefind-ui.css`} rel="stylesheet" />
+<link href={`${basePath}_pagefind/pagefind-ui.css`} rel="stylesheet" />
 
 <style>
   /* Override Pagefind CSS variables to respect dark mode */
@@ -54,7 +54,7 @@ const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
   }
 </style>
 
-<script src={`${basePath}/_pagefind/pagefind-ui.js`}></script>
+<script src={`${basePath}_pagefind/pagefind-ui.js`}></script>
 <script>
   // Load Pagefind after the page loads
   window.addEventListener('DOMContentLoaded', () => {

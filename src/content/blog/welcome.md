@@ -70,7 +70,7 @@ Subscribe to the RSS feed to get notified when new articles are published.
 
 ## Getting Started
 
-Feel free to explore the blog and check out the [other sample posts](/blog/astro-blog-guide) to see more features in action.
+Feel free to explore the blog to see more features in action.
 
 If you have any questions or suggestions, feel free to reach out through the social links in the footer.
 

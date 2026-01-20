@@ -5,7 +5,6 @@ pubDate: 2025-01-10
 category: 'Tutorial'
 tags: ['astro', 'typescript', 'tailwind', 'tutorial', 'web-development']
 lang: 'en'
-heroImage: '/images/astro-blog.jpg'
 ---
 
 ## Why Astro?

@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
-const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+const basePath = '/'; // User GitHub Pages site - served at root
 
 export async function GET(context) {
   const blog = await getCollection('blog', ({ data }) => !data.draft);
@@ -14,7 +14,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `${basePath}/blog/${post.slug}/`,
+      link: `${basePath}blog/${post.slug}/`,
     })),
     customData: `<language>en-us</language>`,
     trailingSlash: false,

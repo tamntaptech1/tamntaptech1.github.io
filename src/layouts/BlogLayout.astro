@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 const { headings } = Astro.props;
-const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+const basePath = '/'; // User GitHub Pages site - served at root
 
 const formatDate = (date: Date) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -102,7 +102,7 @@ const formatDate = (date: Date) => {
     <!-- Article Footer -->
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
       <a
-        href={`${basePath}/blog`}
+        href={`${basePath}blog`}
         class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
