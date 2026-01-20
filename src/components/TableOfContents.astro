@@ -1,0 +1,65 @@
+---
+// TableOfContents.astro - Auto-generated table of contents for blog posts
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+  title?: string;
+}
+
+const { headings = [], title = 'Contents' } = Astro.props;
+
+// Filter headings to h2 and h3 only
+const filteredHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+const hasHeadings = filteredHeadings.length > 0;
+---
+
+{hasHeadings && (
+  <aside class="hidden lg:block fixed right-0 top-20 bottom-0 w-64 overflow-y-auto py-8 pr-8 pl-4 border-l border-gray-200 dark:border-gray-700">
+    <div class="sticky top-4">
+      <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">{title}</h3>
+      <nav>
+        <ul class="space-y-1">
+          {filteredHeadings.map(heading => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class={`toc-link toc-level-${heading.depth} block py-1 text-sm transition-colors`}
+                data-depth={heading.depth}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </aside>
+)}
+
+<script>
+  // Highlight active TOC item on scroll
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const headings = document.querySelectorAll('h2, h3');
+
+  if (tocLinks.length > 0 && headings.length > 0) {
+    const observerOptions = {
+      rootMargin: '-100px 0px -66%',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tocLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    headings.forEach((heading) => observer.observe(heading));
+  }
+</script>

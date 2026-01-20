@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors;
+}
+
+/* Anchor link styles */
+.anchor-link {
+  @apply no-underline opacity-0 hover:opacity-100 transition-opacity;
+  margin-left: 0.25em;
+}
+
+.anchor-link::after {
+  content: '#';
+  @apply text-gray-400 dark:text-gray-500;
+}
+
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link {
+  opacity: 1;
+}
+
+/* Prose styles for blog content */
+.prose {
+  @apply prose-gray dark:prose-invert max-w-none;
+}
+
+.prose pre {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-lg;
+}
+
+.prose code {
+  @apply text-pink-600 dark:text-pink-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.prose pre code {
+  @apply text-gray-800 dark:text-gray-200 bg-transparent p-0;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md;
+}
+
+/* Table of Contents */
+.toc-link {
+  @apply block py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline;
+}
+
+.toc-link.active {
+  @apply text-primary-600 dark:text-primary-400 font-semibold;
+}
+
+.toc-level-2 {
+  @apply ml-0;
+}
+
+.toc-level-3 {
+  @apply ml-4;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 dark:ring-offset-gray-900;
+}
+
+/* Search styles */
+.search-container {
+  --search-input-background: theme('colors.gray.100');
+  --search-input-color: theme('colors.gray.900');
+  --search-result-background: theme('colors.white');
+  --search-result-border: theme('colors.gray.200');
+  --search-result-title: theme('colors.gray.900');
+  --search-result-excerpt: theme('colors.gray.600');
+  --search-highlight: theme('colors.yellow.200');
+}
+
+.dark .search-container {
+  --search-input-background: theme('colors.gray.800');
+  --search-input-color: theme('colors.gray.100');
+  --search-result-background: theme('colors.gray.800');
+  --search-result-border: theme('colors.gray.700');
+  --search-result-title: theme('colors.gray.100');
+  --search-result-excerpt: theme('colors.gray.400');
+  --search-highlight: theme('colors.yellow.800');
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}

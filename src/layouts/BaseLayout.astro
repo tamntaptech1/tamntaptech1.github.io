@@ -1,0 +1,127 @@
+---
+import '../styles/global.css';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+import SocialLink from '../components/SocialLink.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  locale?: string;
+}
+
+const {
+  title = 'Tam Nguyen | Personal Blog',
+  description = 'Personal blog of Tam Nguyen - Software Developer',
+  image = '/images/avatar.jpeg',
+  locale = 'en',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const localeLabel = locale === 'vi' ? 'vi' : 'en';
+const basePath = import.meta.env.PUBLIC_BASE_PATH || '/tamntaptech1.github.io';
+---
+
+<!DOCTYPE html>
+<html lang={localeLabel} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Tam Nguyen" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title={title} href={`${basePath}/rss.xml`} />
+
+    <!-- Dark mode initialization - runs before paint to prevent FOUC -->
+    <script is:inline>
+      const getThemePreference = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const isDark = getThemePreference() === 'dark';
+      document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+      // Watch for localStorage changes (e.g., from another tab)
+      if (typeof window !== 'undefined' && typeof window.addEventListener !== 'undefined') {
+        window.addEventListener('storage', (e) => {
+          if (e.key === 'theme') {
+            const isDark = e.newValue === 'dark';
+            document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+          }
+        });
+      }
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <nav class="mx-auto flex max-w-3xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-6">
+          <a href={`${basePath}/`} class="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            Tam Nguyen
+          </a>
+          <div class="hidden sm:flex items-center gap-4 text-sm">
+            <a href={`${basePath}/blog`} class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+              Blog
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          {locale === 'vi' ? (
+            <a href={`${basePath}/`} class="hidden sm:block text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+              EN
+            </a>
+          ) : (
+            <a href={`${basePath}/vi`} class="hidden sm:block text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+              VI
+            </a>
+          )}
+          <DarkModeToggle />
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-gray-200 dark:border-gray-700 py-8">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            © {new Date().getFullYear()} Tam Nguyen. All rights reserved.
+          </p>
+          <div class="flex items-center gap-4">
+            <SocialLink href="https://github.com/tamntaptech1" platform="github" />
+            <SocialLink href="https://www.linkedin.com/in/tam-nguyen-tri" platform="linkedin" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

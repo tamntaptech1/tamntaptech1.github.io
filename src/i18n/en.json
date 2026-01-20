@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "search": "Search"
+  },
+  "home": {
+    "greeting": "Hi, I'm Tam Nguyen",
+    "tagline": "Software Developer passionate about building beautiful, functional web applications.",
+    "subtitle": "Welcome to my personal blog where I share my thoughts, projects, and experiences.",
+    "readBlog": "Read My Blog",
+    "recentPosts": "Recent Posts",
+    "viewAllPosts": "View all posts"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts, tutorials, and insights about software development",
+    "noPosts": "No posts yet. Check back soon!",
+    "backToAllPosts": "Back to all posts",
+    "lastUpdated": "Last updated",
+    "tableOfContents": "Contents"
+  },
+  "search": {
+    "title": "Search",
+    "subtitle": "Find articles by keywords, topics, or phrases",
+    "placeholder": "Search articles...",
+    "javascriptRequired": "JavaScript is required for search functionality. Please enable JavaScript in your browser."
+  },
+  "footer": {
+    "copyright": "© {year} Tam Nguyen. All rights reserved."
+  }
+}
